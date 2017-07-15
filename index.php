@@ -53,17 +53,13 @@ switch ($action) {
                 FILTER_VALIDATE_INT);
 
         $total = 0;
-        $count = 0;
         $max_rolls = -INF;
-
-        // TODO: convert this while loop to a for loop
-        while ($count < 10000) {
+	for ($count = 0; $count < 10000; $count++) {
             $rolls = 1;
             while (mt_rand(1, 6) != 6) {
                 $rolls++;
             }
             $total += $rolls;
-            $count++;
             $max_rolls = max($rolls, $max_rolls);
         }
         $average_rolls = $total / $count;
