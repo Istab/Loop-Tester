@@ -19,16 +19,17 @@ switch ($action) {
         $scores = $_POST['scores'];
 
         // validate the scores
-        // TODO: Convert this if statement to a for loop
-        if (empty($scores[0]) ||
-            empty($scores[1]) ||
-            empty($scores[2]) ||
-            !is_numeric($scores[0]) ||
-            !is_numeric($scores[1]) ||
-            !is_numeric($scores[2])) {
-                $scores_string = 'You must enter three valid numbers for scores.';
-                break;
+	$invalid= false;
+	for($i = 0; $i < count($scores); $i++) {
+          if (empty($scores[$i]) || !is_numeric($scores[$i])) {
+            $scores_string = 'You must enter three valid numbers for scores.';
+            $invalid = true;
+	    break;
+	  }
         }
+	if($invalid) {
+	 break;
+	}
 
         // process the scores
 	$score_total = 0;
